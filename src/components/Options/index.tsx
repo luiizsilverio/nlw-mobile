@@ -5,8 +5,13 @@ import { Copyright } from '../Copyright';
 import { styles } from './styles';
 import { feedbackTypes } from '../../utils/feedbackTypes'
 import { Option } from '../Option';
+import { FeedbackType } from '../Widget';
 
-export function Options() {
+interface Props {
+  onFeedbackChanged: (feedbackType: FeedbackType) => void
+}
+
+export function Options({ onFeedbackChanged }: Props) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>
@@ -20,6 +25,7 @@ export function Options() {
               key={key}
               title={value.title}
               image={value.image}
+              onPress={() => onFeedbackChanged(key as FeedbackType)}
             />
           ))
         }
