@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ArrowLeft } from 'phosphor-react-native';
 import { View, TextInput, Image, Text, TouchableOpacity } from 'react-native';
 import { captureScreen } from 'react-native-view-shot'
-import FileSystem from 'expo-file-system'
+import * as FileSystem from 'expo-file-system'
 
 import { styles } from './styles';
 import { theme } from '../../theme';
@@ -45,19 +45,25 @@ export function Form({ feedbackType, onCancel, onFeedbackSent }: Props) {
 
     setIsSending(true)
 
+    let screenshotBase64 = null
+
+    if (screenshot) {
+      screenshotBase64 = await FileSystem.readAsStringAsync(screenshot, {encoding: 'base64'})
+    }
+
     try {
       await api.post('/feedbacks', {
         type: feedbackType,
-        screenshot,
+        screenshot: screenshotBase64 ? `data:image/png;base64, ${screenshotBase64}` : null,
         comment
       })
+
+      setIsSending(false)
 
       onFeedbackSent()
     }
     catch (err) {
       console.log(err)
-    }
-    finally {
       setIsSending(false)
     }
   }
