@@ -26,7 +26,7 @@ A aplicação consiste em um botão flutuante, no estilo widget, que permite rel
 * __Expo-file-system__ para converter a imagem em Base64
 
 ## :camera_flash: Screenshots
-![](https://github.com/luiizsilverio/nlw-mobile/tree/main/src/assets/nlw-mobile.gif)
+![](https://github.com/luiizsilverio/nlw-mobile/blob/main/src/assets/nlw-mobile.gif)
 
 ## :car: Iniciando a aplicação
 * Baixe e instale o <ins>ExpoGo</ins> no dispositivo (celular ou emulador)
